@@ -22,6 +22,20 @@
             width: 100%; /* Larghezza completa */
             z-index: 1000; /* Sovrapposizione degli oggetti */
         }
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav li {
+                margin: 0.5em 0;
+            }
+        }
+
+        img{
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
 
         nav ul {
             list-style: none; /* Rimuove i punti elenco */
@@ -47,11 +61,29 @@
         }
 
         .slide {
-            display: none;
-            padding: 5%;
-            max-width: 90%;
-            box-sizing: border-box;
+        display: none;
+        padding: 5%;
+        max-width: 90%;
+        box-sizing: border-box;
+        word-wrap: break-word;
         }
+
+        @media (max-width: 600px) {
+            .slide {
+                padding: 10%;
+                font-size: 14px;
+            }
+
+            .slide img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            pre {
+                font-size: 12px;
+            }
+        }
+
 
         .active {
             display: block;
@@ -113,30 +145,32 @@
             }
         }
 
-        /* Stile per il carosello */
         .carousel {
             align-self: normal;
-            position: relative; /* Posizione relativa per i pulsanti */
-            width: 300px; /* Larghezza del carosello */
-            overflow: hidden; /* Nasconde le immagini fuori dal riquadro */
-            border: 10px solid rgb(15, 97, 227); /* Bordo per vedere il carosello */
-            text-align: center; /* Centra il contenuto */
-            margin: auto; /* Centra il carosello orizzontalmente */
+            position: relative;
+            width: 90%;          /* Occupa il 90% dello schermo */
+            max-width: 500px;    /* Limite massimo per desktop */
+            height: 300px;       /* Altezza fissa per il contenitore */
+            overflow: hidden;
+            border: 10px solid rgb(15, 97, 227);
+            text-align: center;
+            margin: auto;
             display: flex;
-            justify-content: center; /* Centra il carosello */
+            justify-content: center;
+            background-color: #fff; /* Sfondo bianco per mascherare vuoti */
         }
 
-        /* Contenitore del carosello */
         .carousel-container {
-            display: flex; /* Allinea le immagini in orizzontale */
-            transition: transform 0.5s ease-in-out; /* Animazione fluida per il movimento */
-            width: 100%;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
         }
 
-        /* Ogni immagine nel carosello */
         .carousel-item {
-            width: 300px; /* Larghezza delle immagini */
-            height: 300px; /* Altezza delle immagini */
+            flex-shrink: 0;
+            width: 100%;        /* Fa occupare a ogni immagine la larghezza del contenitore */
+            height: 100%;       /* Adatta l'immagine all'altezza */
+            object-fit: contain; /* Scala l’immagine mantenendo le proporzioni senza tagliarla */
+            background-color: #fff;
         }
 
         .carousel-button {  
@@ -149,6 +183,7 @@
             padding: 10px; /* Spazio interno */
             cursor: pointer; /* Cambia il cursore in "cliccabile" */
         }
+
         #Form {
             background-color: #28372a; /* Colore di sfondo per la sezione Form */
             display: flex; /* Usa Flexbox per il layout */
@@ -164,15 +199,31 @@
         /* Stile del form: usa Flexbox per un layout a colonna */
         form {
             display: flex;
-            flex-direction: column; /* Layout in colonna */
-            align-items: center; /* Centra gli elementi nel form */
-            border: 6px solid #140644; /* Colore e spessore del bordo */
-            padding: 20px; /* Padding interno */
-            width: 500px; /* Larghezza fissa del form */
-            height: 450px; /* Altezza automatica per adattarsi al contenuto */
-            background-color: #282a28; /* Sfondo bianco per il form */
+            flex-direction: column;
+            align-items: center;
+            border: 6px solid #140644;
+            padding: 20px;
+            width: 500px;
+            height: 450px;
+            background-color: #282a28;
             margin-top: 120px;
             margin-right: 210px;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                width: 90%;
+                max-width: 500px;
+                height: auto;
+                margin: 120px auto 0 auto;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .nav-button, .carousel-button {
+            padding: 8px;
+            font-size: 14px;
+            }
         }
 
         /* Stile per il titolo del form */
@@ -214,40 +265,67 @@
         }
 
         table {
-        width: 80%;
-        margin: auto;
-        border-collapse: collapse;
-        background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
-        box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-        border-radius: 15px;
-        overflow: hidden;
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
         }
 
         th, td {
-        padding: 18px 25px;
-        text-align: left;
-        font-size: 16px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 18px 25px;
+            text-align: left;
+            font-size: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         tr:first-child {
-        background-color: #4CAF50;
-        color: white;
-        font-size: 18px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         tr:not(:first-child):hover {
-        background-color: rgba(76, 175, 80, 0.2);
-        cursor: pointer;
-        transition: 0.3s;
+            background-color: rgba(76, 175, 80, 0.2);
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         td {
         color: #e0e0e0;
         }
-        
+
+        @media (max-width: 600px) {
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            tr:first-child {
+                display: none;
+            }
+            td {
+                position: relative;
+                padding-left: 50%;
+            }
+            td::before {
+                position: absolute;
+                top: 18px;
+                left: 18px;
+                width: 45%;
+                white-space: nowrap;
+            }
+            td:nth-of-type(1)::before { content: "Funzioni"; }
+            td:nth-of-type(2)::before { content: "Utilizzo"; }
+        }  
+
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+
         /* Posizionamento specifico dei pulsanti */
         #indietro { left: 0; } /* Posiziona il pulsante "indietro" a sinistra */
         #avanti{ right: 0; } /* Posiziona il pulsante "avanti" a destra */
@@ -282,7 +360,7 @@
                     <h1 >Iron Shelf</h1>
                     <p >Coustodisci i tuoi libri del cuore dei tuoi libri del cuore</p>
                 </div>
-                <img src="./Database/IronShelf.png" width="200" height="200" style="border-radius: 20px; right: 20px">
+                <img src="IronShelf.png" width="200" height="200" style="border-radius: 20px; right: 20px">
             </div>
             <p>Il progetto è organizzato nei seguenti moduli:</p>
             <ul>
@@ -290,10 +368,18 @@
                 <li>Gestione dei dati</li>
                 <li>Funzionalità</li>
             </ul>
-            <video style="align-self:center;border-radius: 20px" width="80%" height="40%" controls>
-                <source src="../../../Downloads/video.mp4" type="video/mp4">
+            <video style="align-self:center;border-radius: 20px" width="72%" height="35%" controls>
+                <source src="IronShelf tutorial.mp4" type="video/mp4">
             </video>
         </section>
+        </div>
+
+        <div class="slide">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h1>Il progetto è suddiviso nelle classi seguenti</h1>
+                
+                <img style="border-radius: 20px;" src="StrutturaProgetto.png">
+            </div> 
         </div>
         
         <div class="slide">
@@ -965,9 +1051,14 @@
         <div class="space"></div>
         <div class="carousel">
             <div class="carousel-container">
-                    <img src="./Database/FeatherSample.png" class="carousel-item" alt="Immagine 1">
-                    <img src="./Database/SamplePerFemmine.png" class="carousel-item" alt="Immagine 2">
-                    <img src="./Database/SamplePerMaschi.png" class="carousel-item" alt="Immagine 3">
+                    <img src="Img1 (2).png" class="carousel-item" alt="Immagine 1">
+                    <img src="Img1 (3).png" class="carousel-item" alt="Immagine 2">
+                    <img src="Img1 (1).png" class="carousel-item" alt="Immagine 3">
+                    <img src="Img1 (4).png" class="carousel-item" alt="Immagine 4">
+                    <img src="Img1 (5).png" class="carousel-item" alt="Immagine 5">
+                    <img src="Img1 (6).png" class="carousel-item" alt="Immagine 6">
+                    <img src="Img1 (7).png" class="carousel-item" alt="Immagine 7">
+                    <img src="Img1 (8).png" class="carousel-item" alt="Immagine 8">
                 </div>
             <button class="carousel-button" id="indietro">❮</button> <!-- Pulsante per andare indietro -->
             <button class="carousel-button" id="avanti">❯</button> <!-- Pulsante per andare avanti -->
@@ -1012,16 +1103,6 @@
         </div>
       </section>
 
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
-    <!---->
 
     <script>
         let CS = 0;
@@ -1050,21 +1131,26 @@
 
             let index = 0;
 
-            // Funzione per aggiornare la posizione del carosello
             function updateCarousel() {
-                container.style.transform = `translateX(${-index * 300}px)`; // Correzione della sintassi per il movimento
-            }
+    const carouselWidth = document.querySelector('.carousel').clientWidth;
+    container.style.transform = `translateX(${-index * carouselWidth}px)`;
+}
 
-            // Funzioni per il pulsante avanti e indietro
-            next.addEventListener('click', () => {
-                index = (index + 1) % images.length;
-                updateCarousel();
-            });
+window.addEventListener('resize', updateCarousel);
 
-            prev.addEventListener('click', () => {
-                index = (index - 1 + images.length) % images.length;
-                updateCarousel();
-            });
+next.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    updateCarousel();
+});
+
+prev.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    updateCarousel();
+});
+
+// Chiama una volta per settare la dimensione iniziale
+updateCarousel();
+
     </script>
 
     <script>
@@ -1095,5 +1181,53 @@
         document.querySelector('Start').style.display = 'none';
     }
     </script>
+    <script>
+        function showStart() {
+            document.getElementById('Start').style.display = 'block';
+            document.getElementById('SignUp').style.display = 'none';
+            document.getElementById('LogIn').style.display = 'none';
+        }
+    
+        function HideStart() {
+            document.getElementById('Start').style.display = 'none';
+        }
+    
+        function showLogIn() {
+            document.getElementById('LogIn').style.display = 'block';
+            document.getElementById('SignUp').style.display = 'none';
+        }
+    
+        function HideLogIn() {
+            document.getElementById('LogIn').style.display = 'none';
+        }
+    
+        function shoWSignUp() {
+            document.getElementById('SignUp').style.display = 'block';
+            document.getElementById('LogIn').style.display = 'none';
+        }
+    
+        function HideSignUp() {
+            document.getElementById('SignUp').style.display = 'none';
+        }
+    
+        function ShowFileManager() {
+            document.getElementById('Manager').style.display = 'block';
+            document.getElementById('LogInManager').style.display = 'none';
+        }
+    
+        function HideManager() {
+            document.getElementById('Manager').style.display = 'none';
+        }
+    
+        function ShowLogInManager() {
+            document.getElementById('LogInManager').style.display = 'block';
+            document.getElementById('Manager').style.display = 'none';
+        }
+    
+        function HideLogInManager() {
+            document.getElementById('LogInManager').style.display = 'none';
+        }
+    </script>
+    
 </body>
 </html>
