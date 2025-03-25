@@ -4,344 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Presentazione del Codice</title>
-    <style>
-        body {
-            background-color:#272222;
-            color:aliceblue;
-            font-family: 'Times New Roman', sans-serif; /* Imposta il font di base per la pagina */
-            margin: 0; /* Rimuove il margine esterno */
-            padding: 0; /* Rimuove il margine interno */
-        }
-
-        /* Stile per l'header (barra di navigazione) */
-        header { 
-            background-color: rgb(15, 97, 227); /* Colore di sfondo per l'header */
-            padding: 0.5em 1em; /* Padding interno */
-            position: fixed; /* Posizione fissa in cima alla pagina */
-            top: 0; /* Posiziona in cima */
-            width: 100%; /* Larghezza completa */
-            z-index: 1000; /* Sovrapposizione degli oggetti */
-        }
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-            }
-            nav li {
-                margin: 0.5em 0;
-            }
-        }
-
-        img{
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        nav ul {
-            list-style: none; /* Rimuove i punti elenco */
-            margin: 0; /* Rimuove margini */
-            padding: 0; /* Rimuove padding */
-            display: flex; /* Disposizione orizzontale degli elementi */
-            justify-content: center; /* Centra gli elementi nella navbar */
-        }
-
-        nav li{
-            margin: 0 1em;
-        }
-
-        nav a {
-            text-decoration: none; /* Rimuove la sottolineatura */
-            color: white; /* Colore del testo */
-            padding: 0.5em 1em; /* Spazio interno */
-            display: inline-block; /* Imposta come blocco in linea */
-        }
-
-        nav a:hover{
-            background-color: rgb(129, 165, 227);
-        }
-
-        .slide {
-        display: none;
-        padding: 5%;
-        max-width: 90%;
-        box-sizing: border-box;
-        word-wrap: break-word;
-        }
-
-        @media (max-width: 600px) {
-            .slide {
-                padding: 10%;
-                font-size: 14px;
-            }
-
-            .slide img {
-                max-width: 100%;
-                height: auto;
-            }
-
-            pre {
-                font-size: 12px;
-            }
-        }
-
-
-        .active {
-            display: block;
-        } 
-
-        .nav-button {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 15px 20px;
-            font-size: 20px;
-            background-color: rgb(15, 97, 227);
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .nav-button:hover {
-            background-color: rgb(129, 165, 227);
-        }
-
-        .left {
-            left: 20px;
-        }
-
-        .right {
-            right: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .nav-button {
-                font-size: 16px;
-                padding: 10px 15px;
-            }
-        }
-
-        pre {
-            text-align: left;
-            color:#272222;
-            background: rgba(240, 248, 255, 0.708);
-            padding: 10px;
-            overflow-x: auto;
-            border-radius: 5px;
-            max-width: 100%;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        @media (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-            .slide {
-                padding: 10%;
-            }
-            button {
-                font-size: 14px;
-            }
-        }
-
-        .carousel {
-            align-self: normal;
-            position: relative;
-            width: 90%;          /* Occupa il 90% dello schermo */
-            max-width: 500px;    /* Limite massimo per desktop */
-            height: 300px;       /* Altezza fissa per il contenitore */
-            overflow: hidden;
-            border: 10px solid rgb(15, 97, 227);
-            text-align: center;
-            margin: auto;
-            display: flex;
-            justify-content: center;
-            background-color: #fff; /* Sfondo bianco per mascherare vuoti */
-        }
-
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .carousel-item {
-            flex-shrink: 0;
-            width: 100%;        /* Fa occupare a ogni immagine la larghezza del contenitore */
-            height: 100%;       /* Adatta l'immagine all'altezza */
-            object-fit: contain; /* Scala l’immagine mantenendo le proporzioni senza tagliarla */
-            background-color: #fff;
-        }
-
-        .carousel-button {  
-            position: absolute; /* Posizionamento sui lati del carosello */
-            top: 50%; /* Centra verticalmente */
-            transform: translateY(-50%); /* Perfetto allineamento verticale */
-            background: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
-            color: rgb(15, 97, 227); /* Colore del testo */
-            border: none; /* Rimuove il bordo */
-            padding: 10px; /* Spazio interno */
-            cursor: pointer; /* Cambia il cursore in "cliccabile" */
-        }
-
-        #Form {
-            background-color: #28372a; /* Colore di sfondo per la sezione Form */
-            display: flex; /* Usa Flexbox per il layout */
-            justify-content: center; /* Centra il form orizzontalmente */
-            padding: 20px; /* Padding interno */
-        }
-
-        /* Stile per la navbar fissa, per evitare che copra il contenuto */
-        .spacer {
-            height: 60px; /* Spazio per la navbar */
-        }
-
-        /* Stile del form: usa Flexbox per un layout a colonna */
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border: 6px solid #140644;
-            padding: 20px;
-            width: 500px;
-            height: 450px;
-            background-color: #282a28;
-            margin-top: 120px;
-            margin-right: 210px;
-        }
-
-        @media (max-width: 600px) {
-            form {
-                width: 90%;
-                max-width: 500px;
-                height: auto;
-                margin: 120px auto 0 auto;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-button, .carousel-button {
-            padding: 8px;
-            font-size: 14px;
-            }
-        }
-
-        /* Stile per il titolo del form */
-        h2 {
-            text-align: center; /* Centra il titolo */
-            margin-bottom: 20px; /* Distanza tra il titolo e il form */
-        }
-
-        /* Stile per ogni fieldset (gruppo di input) */
-        fieldset {
-            width: 90%; /* Imposta la larghezza al 100% */
-            border: none; /* Rimuove il bordo da fieldset */
-            margin-bottom: 15px; /* Distanza tra i campi del form */
-        }
-
-        /* Stile per gli input (testo, data, email, commenti) */
-        input[type="text"], input[type="date"], input[type="email"], input[type="commento"] {
-            width: 100%; /* Gli input occupano tutta la larghezza del fieldset */
-            padding: 10px; /* Padding interno */
-            margin-top: 5px; /* Distanza tra la label e l'input */
-        }
-
-        /* Stile per il bottone di invio */
-        input[type="submit"] {
-            padding: 10px 20px; /* Padding interno */
-            background-color: #140644; /* Colore di sfondo */
-            color: white; /* Colore del testo */
-            border: none; /* Rimuove il bordo */
-            cursor: pointer; /* Cambia il cursore in "cliccabile" */
-        }
-
-        /* Stile al passaggio del mouse sul bottone di invio */
-        input[type="submit"]:hover {
-            background-color: #574b4b; /* Colore di sfondo diverso al passaggio del mouse */
-        }
-
-        .space{
-            height: 100px;
-        }
-
-        table {
-            width: 80%;
-            margin: auto;
-            border-collapse: collapse;
-            background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 18px 25px;
-            text-align: left;
-            font-size: 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        tr:first-child {
-            background-color: #4CAF50;
-            color: white;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        tr:not(:first-child):hover {
-            background-color: rgba(76, 175, 80, 0.2);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        td {
-        color: #e0e0e0;
-        }
-
-        @media (max-width: 600px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-            tr:first-child {
-                display: none;
-            }
-            td {
-                position: relative;
-                padding-left: 50%;
-            }
-            td::before {
-                position: absolute;
-                top: 18px;
-                left: 18px;
-                width: 45%;
-                white-space: nowrap;
-            }
-            td:nth-of-type(1)::before { content: "Funzioni"; }
-            td:nth-of-type(2)::before { content: "Utilizzo"; }
-        }  
-
-        iframe {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* Posizionamento specifico dei pulsanti */
-        #indietro { left: 0; } /* Posiziona il pulsante "indietro" a sinistra */
-        #avanti{ right: 0; } /* Posiziona il pulsante "avanti" a destra */
-    </style>
+    <link rel="stylesheet" type="text/css" href="Presentazione.css">
 </head>
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
 <body>
     <header id="navbar">
         <nav>
@@ -1105,133 +769,123 @@
             </button>
           </form>
         </div>
-      </section>
-
-
+    </section>
     <script>
         let CS = 0;
-        const slides = document.querySelectorAll(".slide");
-        
-        //bottoni slide
-        function nextSlide() {
-            slides[CS].classList.remove("active");
-            CS = (CS + 1) % slides.length;
-            slides[CS].classList.add("active");
-        }
+const slides = document.querySelectorAll(".slide");
+//bottoni slide
+function nextSlide() {
+    slides[CS].classList.remove("active");
+    CS = (CS + 1) % slides.length;
+    slides[CS].classList.add("active");
+}
 
-        function previousSlide() {
-            slides[CS].classList.remove("active");
-            CS = (CS - 1 + slides.length) % slides.length; // Evita valori negativi
-            slides[CS].classList.add("active");
-        }
-        </script>
+function previousSlide() {
+    slides[CS].classList.remove("active");
+    CS = (CS - 1 + slides.length) % slides.length; // Evita valori negativi
+    slides[CS].classList.add("active");
+}
 
-        <script>
-            // Selezione degli elementi del carosello
-            const container = document.querySelector('.carousel-container');
-            const images = document.querySelectorAll('.carousel-item');
-            const prev = document.getElementById('indietro');
-            const next = document.getElementById('avanti');
+    // Selezione degli elementi del carosello
+    const container = document.querySelector('.carousel-container');
+    const images = document.querySelectorAll('.carousel-item');
+    const prev = document.getElementById('indietro');
+    const next = document.getElementById('avanti');
 
-            let index = 0;
+    let index = 0;
 
-            function updateCarousel() {
-    const carouselWidth = document.querySelector('.carousel').clientWidth;
-    container.style.transform = `translateX(${-index * carouselWidth}px)`;
+    function updateCarousel() {
+const carouselWidth = document.querySelector('.carousel').clientWidth;
+container.style.transform = `translateX(${-index * carouselWidth}px)`;
 }
 
 window.addEventListener('resize', updateCarousel);
 
 next.addEventListener('click', () => {
-    index = (index + 1) % images.length;
-    updateCarousel();
+index = (index + 1) % images.length;
+updateCarousel();
 });
 
 prev.addEventListener('click', () => {
-    index = (index - 1 + images.length) % images.length;
-    updateCarousel();
+index = (index - 1 + images.length) % images.length;
+updateCarousel();
 });
 
 // Chiama una volta per settare la dimensione iniziale
 updateCarousel();
 
-    </script>
+function showHome() {
+document.querySelector('.slider-container').style.display = 'block';
+document.getElementById('Immagini').style.display = 'none';
+document.getElementById('Form').style.display = 'none';
+document.getElementById('navbar').style.display = 'block'; // Mostra la navbar
+}
 
-    <script>
-    function showHome() {
-        document.querySelector('.slider-container').style.display = 'block';
-        document.getElementById('Immagini').style.display = 'none';
-        document.getElementById('Form').style.display = 'none';
-        document.getElementById('navbar').style.display = 'block'; // Mostra la navbar
-    }
+function showImages() {
+document.querySelector('.slider-container').style.display = 'none';
+document.getElementById('Immagini').style.display = 'block';
+document.getElementById('Form').style.display = 'none';
+document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
+}
 
-    function showImages() {
-        document.querySelector('.slider-container').style.display = 'none';
-        document.getElementById('Immagini').style.display = 'block';
-        document.getElementById('Form').style.display = 'none';
-        document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
-    }
+function ShowForm() {
+document.querySelector('.slider-container').style.display = 'none';
+document.getElementById('Immagini').style.display = 'none';
+document.getElementById('Form').style.display = 'flex';
+document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
+}
+function showStart(){
+document.querySelector('Start').style.display = 'block';
+}
+function HideStart(){
+document.querySelector('Start').style.display = 'none';
+}
 
-    function ShowForm() {
-        document.querySelector('.slider-container').style.display = 'none';
-        document.getElementById('Immagini').style.display = 'none';
-        document.getElementById('Form').style.display = 'flex';
-        document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
-    }
-    function showStart(){
-        document.querySelector('Start').style.display = 'block';
-    }
-    function HideStart(){
-        document.querySelector('Start').style.display = 'none';
-    }
+function showStart() {
+    document.getElementById('Start').style.display = 'block';
+    document.getElementById('SignUp').style.display = 'none';
+    document.getElementById('LogIn').style.display = 'none';
+}
+
+function HideStart() {
+    document.getElementById('Start').style.display = 'none';
+}
+
+function showLogIn() {
+    document.getElementById('LogIn').style.display = 'block';
+    document.getElementById('SignUp').style.display = 'none';
+}
+
+function HideLogIn() {
+    document.getElementById('LogIn').style.display = 'none';
+}
+
+function shoWSignUp() {
+    document.getElementById('SignUp').style.display = 'block';
+    document.getElementById('LogIn').style.display = 'none';
+}
+
+function HideSignUp() {
+    document.getElementById('SignUp').style.display = 'none';
+}
+
+function ShowFileManager() {
+    document.getElementById('Manager').style.display = 'block';
+    document.getElementById('LogInManager').style.display = 'none';
+}
+
+function HideManager() {
+    document.getElementById('Manager').style.display = 'none';
+}
+
+function ShowLogInManager() {
+    document.getElementById('LogInManager').style.display = 'block';
+    document.getElementById('Manager').style.display = 'none';
+}
+
+function HideLogInManager() {
+    document.getElementById('LogInManager').style.display = 'none';
+}
     </script>
-    <script>
-        function showStart() {
-            document.getElementById('Start').style.display = 'block';
-            document.getElementById('SignUp').style.display = 'none';
-            document.getElementById('LogIn').style.display = 'none';
-        }
-    
-        function HideStart() {
-            document.getElementById('Start').style.display = 'none';
-        }
-    
-        function showLogIn() {
-            document.getElementById('LogIn').style.display = 'block';
-            document.getElementById('SignUp').style.display = 'none';
-        }
-    
-        function HideLogIn() {
-            document.getElementById('LogIn').style.display = 'none';
-        }
-    
-        function shoWSignUp() {
-            document.getElementById('SignUp').style.display = 'block';
-            document.getElementById('LogIn').style.display = 'none';
-        }
-    
-        function HideSignUp() {
-            document.getElementById('SignUp').style.display = 'none';
-        }
-    
-        function ShowFileManager() {
-            document.getElementById('Manager').style.display = 'block';
-            document.getElementById('LogInManager').style.display = 'none';
-        }
-    
-        function HideManager() {
-            document.getElementById('Manager').style.display = 'none';
-        }
-    
-        function ShowLogInManager() {
-            document.getElementById('LogInManager').style.display = 'block';
-            document.getElementById('Manager').style.display = 'none';
-        }
-    
-        function HideLogInManager() {
-            document.getElementById('LogInManager').style.display = 'none';
-        }
-    </script>
-    
 </body>
 </html>
