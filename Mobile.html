@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentazione App</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      color: #333;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #E1306C;
+      color: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 15px 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Spazio sotto la navbar */
+    .spacer {
+      height: 70px;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
+      margin-bottom: 10px;
+      border-radius: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+    }
+
+    img.logo {
+      width: 120px;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 20px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+    }
+
+    /* Colore personalizzato per la prima riga della tabella */
+    table tr:first-child {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .carousel img {
+      width: 250px;
+      height: auto;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .contacts input, .contacts a, .contacts button {
+      display: block;
+      width: 80%;
+      margin: 10px auto;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-decoration: none;
+      color: #fff;
+      background-color: #333;
+    }
+
+    .contacts a {
+      background-color: #E1306C;
+      color: #fff;
+    }
+
+    form textarea, form input {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    form button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#video">Video</a>
+    <a href="#funzionalita">Funzionalità</a>
+    <a href="#immagini">Immagini</a>
+    <a href="#contatti">Contatti</a>
+    <a href="#form">Commenti</a>
+  </nav>
+
+  <!-- Spacer sotto la navbar -->
+  <div class="spacer"></div>
+
+  <!-- Sezione 1: Nome App, Logo e Video -->
+  <section id="video">
+    <h1>IronShelf</h1>
+    <p>custodisci i tuoi libri del cuore</p>
+    <img src="IronShelf.png" alt="Logo App" class="logo">
+
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/0dxTKKUwvuw?si=VO1_lxrCwN7CC2xi" 
+              title="Tutorial"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Sezione 2: Tabella Funzionalità -->
+  <section id="funzionalita">
+    <h2>Funzionalità</h2>
+    <table>
+            <tr><th>Funzioni</th><th>Utilizzo</th></tr>
+            <tr><th>Creazione Account</th><th>Solo persone autorizzate possono creare altri utenti</th></tr>
+            <tr><th>Log in sicuro</th><th>Tre tentativi massimi, altrimenti il gestionale esegue uno shut down</th></tr>
+            <tr><th>Modifica</th><th>Se una volta inserito un libro ci si accorge di un errore si può modificare il libro</th></tr>
+            <tr><th>Filtri di ricerca</th><th>Filtri per ogni campo dei libri e anche per periodo</th></tr>
+          </table>
+  </section>
+
+  <!-- Sezione 3: Carosello di Immagini -->
+  <section id="immagini">
+    <h2>Gallery</h2>
+    <div class="carousel">
+        <img src="Img1 (2).png"  alt="Immagine 1">
+        <img src="Img1 (3).png"  alt="Immagine 2">
+        <img src="Img1 (1).png"  alt="Immagine 3">
+        <img src="Img1 (4).png"  alt="Immagine 4">
+        <img src="Img1 (5).png"  alt="Immagine 5">
+        <img src="Img1 (6).png"  alt="Immagine 6">
+        <img src="Img1 (7).png"  alt="Immagine 7">
+        <img src="Img1 (8).png"  alt="Immagine 8">
+    </div>
+  </section>
+
+  <!-- Sezione 4: Contatti e Download -->
+  <section class="contacts" id="contatti">
+    <img src="IronShelf.png" alt="Logo App" class="logo">
+    <input type="email" placeholder="La tua email per contattarmi">
+    <a href="https://instagram.com/ironshelf.official" target="_blank">Seguici su Instagram</a>
+    <a href="IronShelf.zip" download="IronShelf.zip">
+      <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px">Download</button>
+  </a>
+  </section>
+
+  <!-- Sezione 5: Form Commenti -->
+  <section id="form">
+    <h2>Lascia un Commento</h2>
+    <form>
+      <input type="text" placeholder="Il tuo nome" required>
+      <textarea rows="5" placeholder="Scrivi qui il tuo commento..." required></textarea>
+      <button type="submit">Invia</button>
+    </form>
+  </section>
+
+</body>
+</html>

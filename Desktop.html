@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentazione del Codice</title>
+    <link rel="stylesheet" type="text/css" href="Presentazione.css">
+</head>
+<body>
+    <header id="navbar">
+        <nav>
+            <ul>
+                <li><a href="#Home" onclick="showHome()">Home</a></li>
+                <li><a href="#Immagini" onclick="showImages()">Immagini</a></li>
+                <li><a href="#Form" onclick="ShowForm()">Form</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="slider-container">
+        <div class="slide active">
+            <section id="Home">
+            <div style="display:flex; align-items:center; justify-content: space-between;">
+                <div style="margin:0">
+                    <h1 >Iron Shelf</h1>
+                    <p >Coustodisci i tuoi libri del cuore dei tuoi libri del cuore</p>
+                </div>
+                <img src="IronShelf.png" style="max-width: 30%; height: auto; border-radius: 20px; display: block; margin-right: 20px;">
+            </div>
+            <p>Il progetto è organizzato nei seguenti moduli:</p>
+            <ul>
+                <li>Interfaccia utente</li>
+                <li>Gestione dei dati</li>
+                <li>Funzionalità</li>
+            </ul>
+            <div style="position: relative; width: 80%; padding-bottom: 45%; height: 0; overflow: hidden;">
+                <iframe src="https://www.youtube.com/embed/0dxTKKUwvuw?si=VO1_lxrCwN7CC2xi" 
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                </iframe>
+              </div>        
+            </section>
+        </div>
+
+        <div class="slide">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+                <h1>Il progetto è suddiviso nelle classi seguenti</h1>
+                
+                <img style="max-width: 30%; height: auto; border-radius: 20px;" src="StrutturaProgetto.png">
+            </div> 
+        </div>
+        
+        <div class="slide">
+            <h1>L'inizio del programma</h1>
+            <p>Il core del programma:</p>
+            <h1>IL MAIN</h1>
+            <pre>
+                public static void main(String[] args) {
+                    //String FileLogName= "./Progetto Libreria/Database/DatabaseLogIn.txt";
+                    String FileLogName= "DatabaseLogIn.txt";
+                    FileLogInManager logFile=new FileLogInManager(FileLogName);
+                    if(logFile.FileIsEmpty())
+                    {
+                        new SignUp(logFile);
+                    }
+                    else
+                    {
+                        new Start(logFile);
+                    }
+                }
+            </pre>
+            <div class="space"></div>
+            <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="showStart()">Start</button>
+            <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="shoWSignUp()">SignUp</button>
+            <div id="Start" style="display: none;">
+                <pre>
+                    public Start(FileLogInManager log) {
+                        JFrame StartFrame = new JFrame();
+                        StartFrame.setSize(300, 300);
+                        StartFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        //StartFrame.setBackground(Color.black);
+                        StartFrame.setLocationRelativeTo(null);
+                
+                        Gradiente StartPanel = new Gradiente(new Color(83, 244, 246), new Color(250, 201, 26));
+                        StartPanel.setLayout(new BoxLayout(StartPanel, BoxLayout.Y_AXIS));
+                        JLabel WelcomeLabel=new JLabel("Benvenuto cosa vuole fare?");
+                        WelcomeLabel.setForeground(Color.white);
+                        WelcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        JLabel ACapoLabel=new JLabel("\n");
+                        JLabel ACapoLabel2=new JLabel("\n");
+                        JLabel ACapoLabel3=new JLabel("\n");
+                
+                        JPanel ButtonPanel = new JPanel();
+                        ButtonPanel.setLayout(new BoxLayout(ButtonPanel, BoxLayout.X_AXIS));
+                        JButton LogInButton = new JButton("Log In");
+                        LogInButton.setMaximumSize(new Dimension(100, 30));
+                        LogInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        LogInButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+                        LogInButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                new LogIn(log);
+                                StartFrame.dispose();
+                            }
+                        });
+                
+                        JButton SingUpButton = new JButton("Sign Up");
+                        SingUpButton.setMaximumSize(new Dimension(100,30));
+                        SingUpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        SingUpButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+                        SingUpButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                new SingUp(log);
+                                StartFrame.dispose();
+                            }
+                        });
+                
+                        //Immagine I= new Immagine("./Progetto Libreria/Database/IronShelf.png");
+                        Immagine I= new Immagine("../Database/IronShelf.png");
+                        I.setMaximumSize(new Dimension(130, 130));
+                    }
+                </pre>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideStart()">Back</button>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="showLogIn()">Log In</button>
+                <div id="LogIn" style="display: none;">
+                    <pre>
+                    public LogIn(FileLogInManager FileLog) {
+                        //impostazione del frame
+                        JFrame logInFrame = new JFrame("LogIn");
+                        logInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        logInFrame.setSize(300,200);
+                        logInFrame.setLocationRelativeTo(null);
+                
+                        //impostazione del panel
+                        Gradiente logInPanel = new Gradiente(new Color(250, 27, 198), new Color(83, 244, 246));
+                        logInPanel.setLayout(new BoxLayout(logInPanel,BoxLayout.Y_AXIS));
+                
+                        JPanel occhioPanel = new JPanel();
+                        occhioPanel.setLayout(new BoxLayout(occhioPanel,BoxLayout.X_AXIS));
+                
+                        JLabel UserNAmeInLabel = new JLabel("Nome Utente");
+                        //UserNAmeInLabel.setForeground();
+                        JTextField UserNameField = new JTextField("Inserisci utente...");
+                        UserNameField.setMaximumSize(new Dimension(200, 20));
+                        UserNameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        UserNAmeInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        UserNameField.setForeground(Color.GRAY);
+                        UserNameField.addFocusListener(new FocusListener() {
+                            public void focusGained(FocusEvent e) {
+                                if(UserNameField.getText().equals("Inserisci utente..."))
+                                {
+                                    UserNameField.setText("");
+                                    UserNameField.setForeground(Color.black);
+                                }
+                            }
+                            public void focusLost(FocusEvent e) {
+                                if (UserNameField.getText().isEmpty()) {
+                                    UserNameField.setText("Inserisci utente...");
+                                    UserNameField.setForeground(Color.GRAY);
+                                }
+                            }
+                        });
+                
+                        JLabel PasswordInLabel = new JLabel("Password");
+                        JPasswordField PasswordField = new JPasswordField();
+                        PasswordField.setMaximumSize(new Dimension(200, 20));
+                        PasswordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        PasswordInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        PasswordField.setForeground(Color.black);
+                
+                        JButton logInButton = new JButton("Submit");
+                        logInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                
+                        logInButton.addActionListener(new ActionListener() {
+                            int cont=0;
+                            public void actionPerformed(ActionEvent e) {
+                                String userName = UserNameField.getText();
+                                String password = PasswordField.getText();
+                                if(FileLog.LogInRead(userName, password) && cont<3)
+                                {
+                                    JOptionPane.showMessageDialog(logInFrame, "Benvunuto/a "+userName+"!");
+                                    logInFrame.dispose();
+                                    //String FileName = "./Progetto Libreria/Database/DatabaseLibreria.txt";
+                                    String FileName = "DatabaseLibreria.txt";
+                                    FileManager file = new FileManager(FileName);
+                                   new MainFrame(file);
+                                }
+                                else if(cont>=2)
+                                {
+                                    JOptionPane.showMessageDialog(logInFrame, "Tentativi esauriti, mi dispiace");
+                                    System.exit(1);
+                                }
+                                else if(PasswordField.getText().equals("Inserisci password...") || UserNameField.getText().equals("Inserisci utente..."))
+                                {
+                                    JOptionPane.showMessageDialog(logInFrame, "Tutti i campi sono obbligatori!");
+                                }
+                                else
+                                {
+                                    cont++;
+                                    JOptionPane.showMessageDialog(logInFrame, "Nome utente o password errati");
+                                    UserNameField.setText("");
+                                    PasswordField.setText("");
+                                }
+                            }
+                        });
+                        JToggleButton toggleButton = new JToggleButton("👁️"); // Aggiungi un listener per il toggle button
+                        toggleButton.addItemListener(new ItemListener() {
+                            @Override public void itemStateChanged(ItemEvent e)
+                            { if (e.getStateChange() == ItemEvent.SELECTED)
+                            { // Mostra la password in chiaro
+                                PasswordField.setEchoChar((char) 0); // Caratteri visibili
+                            }
+                            else // Nasconde la password con un asterisco
+                            {
+                                PasswordField.setEchoChar('•'); // Caratteri mascherati
+                            } } });
+                        occhioPanel.add(PasswordField);
+                        occhioPanel.add(toggleButton);
+                    }
+                </pre>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideLogIn()">Back</button>
+                </div>
+            </div>
+            <div id="SignUp" style="display: none;">
+                <pre>
+                    public SingUp(FileLogInManager FileLog) {
+                        JFrame singUpFrame=new JFrame("SignUp");
+                        singUpFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        singUpFrame.setSize(300,200);
+                        singUpFrame.setLocationRelativeTo(null);
+                
+                
+                        Gradiente singUpPanel=new Gradiente(new Color(250, 201, 26), new Color(250, 27, 198));
+                        singUpPanel.setLayout(new BoxLayout(singUpPanel,BoxLayout.Y_AXIS));
+                
+                        JPanel occhiolinoPanel=new JPanel();
+                        occhiolinoPanel.setLayout(new BoxLayout(occhiolinoPanel,BoxLayout.X_AXIS));
+                
+                        JLabel UserNameLabel=new JLabel("Inserire nuovo nome utente");
+                        JTextField userNameField=new JTextField("Inserire nuovo utente...");
+                        userNameField.setMaximumSize(new Dimension(200,20));
+                        userNameField.setForeground(Color.GRAY);
+                        userNameField.addFocusListener(new FocusListener(){
+                            public void focusGained(FocusEvent e) {
+                                if(userNameField.getText().equals("Inserire nuovo utente..."))
+                                {
+                                    userNameField.setText("");
+                                    userNameField.setForeground(Color.black);
+                                }
+                            }
+                            public void focusLost(FocusEvent e) {
+                                if (userNameField.getText().isEmpty()) {
+                                    userNameField.setText("Inserire nuovo utente...");
+                                    userNameField.setForeground(Color.GRAY);
+                                }
+                            }
+                        });
+                        userNameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        UserNameLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                
+                        JLabel PasswordLabel=new JLabel("Inserire nuova password");
+                        JTextField passwordField=new JTextField("Inserire nuova password...");
+                        passwordField.setMaximumSize(new Dimension(200,20));
+                        passwordField.setForeground(Color.GRAY);
+                        passwordField.addFocusListener(new FocusListener(){
+                            public void focusGained(FocusEvent e) {
+                                if(passwordField.getText().equals("Inserire nuova password..."))
+                                {
+                                    passwordField.setText("");
+                                    passwordField.setForeground(Color.black);
+                                }
+                            }
+                            public void focusLost(FocusEvent e) {
+                                if (passwordField.getText().isEmpty()) {
+                                    passwordField.setText("Inserire nuova password...");
+                                    passwordField.setForeground(Color.GRAY);
+                                }
+                            }
+                        });
+                        passwordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        PasswordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                
+                        JLabel AddPasswordLabel=new JLabel("Inserire la password di autenticazione");
+                        JPasswordField AddpasswordField=new JPasswordField();
+                        AddpasswordField.setMaximumSize(new Dimension(200,20));
+                        AddpasswordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        AddPasswordLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        JToggleButton toggleButton = new JToggleButton("👁️"); // Aggiungi un listener per il toggle button
+                        toggleButton.addItemListener(new ItemListener() {
+                            @Override public void itemStateChanged(ItemEvent e)
+                            { if (e.getStateChange() == ItemEvent.SELECTED)
+                            { // Mostra la password in chiaro
+                                AddpasswordField.setEchoChar((char) 0); // Caratteri visibili
+                            }
+                            else // Nasconde la password con un asterisco
+                            {
+                                AddpasswordField.setEchoChar('•'); // Caratteri mascherati
+                            } } });
+                        occhiolinoPanel.add(AddpasswordField);
+                        occhiolinoPanel.add(toggleButton);
+                
+                        JButton SingUpButton=new JButton("Sing Up");
+                        SingUpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                        SingUpButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                String User=userNameField.getText();
+                                String Passwd=passwordField.getText();
+                                String AddPassword=AddpasswordField.getText();
+                                if(FileLog.NewUser(User,Passwd, AddPassword, singUpFrame))
+                                {
+                                    JOptionPane.showMessageDialog(singUpFrame, "SingUp Successful");
+                                    singUpFrame.dispose();
+                                    //String FileName = "./Progetto Libreria/Database/DatabaseLibreria.txt";
+                                    String FileName = "DatabaseLibreria.txt";
+                                    FileManager file = new FileManager(FileName);
+                                    new MainFrame(file);
+                                }
+                                else
+                                {
+                                    JOptionPane.showMessageDialog(singUpFrame, "Nome Utente o password già in uso");
+                                    userNameField.setText("");
+                                    passwordField.setText("");
+                                    AddpasswordField.setText("");
+                                }
+                            }
+                        });
+                    }
+                </pre>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideSignUp()">Back</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>FileLogInManager & FileManager?</h1>
+            <p>Le classi per la gestione dati</p>
+            <ul>
+                <li>FileManager: Gestione dei libri -> DatabaseLibreria.txt</li>
+                <li>FileLogInManager: Gestione degli users -> DatabaseLogIn.txt</li>
+                <li>Cartella dei file: Database</li>
+            </ul>
+            <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="ShowLogInManager()">FileLogInManager</button>
+            <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="ShowFileManager()">FileManager</button>
+            <div id="Manager" style="display:none">
+                <pre>
+                public class FileManager {
+                    File file;
+                
+                    public FileManager(String fileName) {
+                        file = new File(fileName);
+                        try {
+                            file.createNewFile();
+                        } catch (IOException e) {
+                            System.out.println("Error creating file");
+                        }
+                    }
+                
+                    public String readFile() {
+                        String books = "";
+                        try (Scanner scanner = new Scanner(new File(file.getAbsolutePath()))) {
+                            while (scanner.hasNextLine()) {
+                                String line = scanner.nextLine() + "\n";
+                                books += line;
+                            }
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                        return books;
+                    }
+                </pre>
+                <pre>
+                    public void EliminaDaTitolo(String titolo) {
+                        titolo = "Titolo: " + titolo;
+                        /*Debug
+                        System.out.println("il titolo dentro la funzione è: "+titolo);*/
+                        StringBuilder LibriDaSalvare = new StringBuilder();
+                        boolean trovato = false;
+                
+                        try (Scanner scanner = new Scanner(new File(file.getAbsolutePath()))) {
+                            while (scanner.hasNextLine()) {
+                                String line = scanner.nextLine().trim(); // Eliminiamo spazi extra
+                
+                                // Se la riga corrisponde al titolo, saltiamo le successive 5 righe
+                                if (line.equals(titolo)) { // Controllo case-insensitive
+                                    /*Debug
+                                    System.out.println("Libro trovato! Eliminazione in corso...");*/
+                                    trovato = true;
+                                    int cont = 5;
+                                    while (cont > 0 && scanner.hasNextLine()) {
+                                        scanner.nextLine();
+                                        cont--;
+                                    }
+                                } else {
+                                    // Aggiungiamo la riga al buffer
+                                    LibriDaSalvare.append(line).append("\n");
+                                }
+                            }
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                            return;
+                        }
+                
+                        /*Debug
+                        System.out.println("Contenuto aggiornato:\n" + LibriDaSalvare);*/
+                
+                        // Se il libro non è stato trovato, avvisiamo
+                        if (!trovato) {
+                            System.out.println("Attenzione: nessun libro trovato con quel titolo!");
+                            return;
+                        }
+                
+                        // Sovrascriviamo il file con i libri rimasti
+                        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                            writer.write(LibriDaSalvare.toString());
+                            System.out.println("File aggiornato correttamente.");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                </pre>
+                <pre>
+                    public void InserisciLibro(String title, String author, String publisher, LocalDate year, String genere) {
+                        try (FileWriter writer = new FileWriter(file.getAbsolutePath(), true)) {
+                            writer.append("Titolo: " + title + "\n");
+                            writer.append("Autore: " + author + "\n");
+                            writer.append("Casa editrice: " + publisher + "\n");
+                            writer.append("Data di pubblicazione: " + year + "\n");
+                            writer.append("Genere: " + genere + "\n");
+                            writer.append("****************************************\n");
+                        } catch (IOException io) {
+                            System.out.println("Errore durante la scrittura nel file.");
+                            io.printStackTrace();
+                        }
+                    }
+                </pre>
+                <pre>
+                    public String StampaSoloX(String author, int posx) {
+                        if (posx == 0) {
+                            author = "Titolo: " + author;
+                            System.out.println(author);
+                        } else if (posx == 1) {
+                            author = "Autore: " + author;
+                            //System.out.println(author);
+                        } else if (posx == 2) {
+                            author = "Casa Editrice: " + author;
+                            //System.out.println(author);
+                        } else if (posx == 3) {
+                            author = "Data di pubblicazione: " + author;
+                            // System.out.println(author);
+                        } else if (posx == 4) {
+                            author = "Genere: " + author;
+                            //System.out.println(author);
+                        }
+                        try (Scanner scanner = new Scanner(new File(file.getAbsolutePath()))) {
+                            String Libro = "";
+                            String LibroGiusto = "";
+                            String line;
+                            Boolean AutoreTrovato = false;
+                            while (scanner.hasNextLine()) {
+                                for (int i = 0; i < 6; i++) {
+                                    line = scanner.nextLine();
+                                    Libro = Libro + line + "\n";
+                                    if (i == posx) {
+                                        if (line.contains(author)) {
+                                            AutoreTrovato = true;
+                                        }
+                                    }
+                                }
+                                if (AutoreTrovato) {
+                                    LibroGiusto = LibroGiusto + Libro;
+                                }
+                                AutoreTrovato = false;
+                                Libro = "";
+                            }
+                            System.out.println(LibroGiusto);
+                            return LibroGiusto;
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    }
+                </pre>
+                <pre>
+                    public String CercaDa_D1toD2(LocalDate D1, LocalDate D2) {
+                        StringBuilder libroGiusto = new StringBuilder();
+                        try (Scanner scanner = new Scanner(new File(file.getAbsolutePath()))) {
+                            while (scanner.hasNextLine()) {
+                                StringBuilder books = new StringBuilder();
+                                String dataPubblicazione = null;
+                
+                                // Leggo le 6 righe del libro (se ci sono)
+                                for (int i = 0; i < 6; i++) {
+                                    if (!scanner.hasNextLine()) break;
+                                    String line = scanner.nextLine();
+                                    books.append(line).append("\n");
+                
+                                    // Controllo robusto sulla data
+                                    if (i == 3 && line.toLowerCase().startsWith("data di pubblicazione: ")) {
+                                        dataPubblicazione = line.substring(line.indexOf(":") + 1).trim();
+                                    }
+                                }
+                
+                                if (dataPubblicazione != null) {
+                                    try {
+                                        LocalDate data = LocalDate.parse(dataPubblicazione);
+                                        if ((data.isEqual(D1) || data.isAfter(D1)) && (data.isEqual(D2) || data.isBefore(D2))) {
+                                            libroGiusto.append(books);
+                                        }
+                                    } catch (Exception e) {
+                                        System.out.println("Formato data non valido: " + dataPubblicazione);
+                                    }
+                                }
+                            }
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                
+                        System.out.println(libroGiusto.toString());
+                        return libroGiusto.toString();
+                    }
+                </pre>
+                <pre>
+                    public void modifica(String title, String author, String publisher, LocalDate year, String genere, String OldTitle) {
+                        StringBuilder LibriPrima = new StringBuilder();
+                        StringBuilder LibriDopo = new StringBuilder();
+                        boolean trovato = false;
+                        String line = "";
+                
+                        try (Scanner scanner = new Scanner(new File(file.getAbsolutePath()))) {
+                            while (scanner.hasNextLine()) {
+                                line = scanner.nextLine() + "\n";
+                
+                                if (!trovato && line.startsWith("Titolo: ") && line.contains(OldTitle)) {
+                                    trovato = true; // Abbiamo trovato il libro da modificare
+                                    // Saltare le 5 righe successive del vecchio libro
+                                    for (int i = 0; i < 5; i++) {
+                                        if (scanner.hasNextLine()) scanner.nextLine();
+                                    }
+                                }
+                                else {
+                                    if (!trovato) {
+                                        LibriPrima.append(line); // Scriviamo tutto ciò che viene prima del libro
+                                    } else {
+                                        LibriDopo.append(line); // Scriviamo tutto ciò che viene dopo
+                                    }
+                                }
+                            }
+                        } catch (FileNotFoundException e) {
+                            System.out.println("Errore durante la lettura nel file.");
+                            return;
+                        }
+                
+                        // Creiamo la nuova versione aggiornata del libro
+                        String LibroAggiornato = "Titolo: " + title + "\n" +
+                                "Autore: " + author + "\n" +
+                                "Casa editrice: " + publisher + "\n" +
+                                "Data di pubblicazione: " + year + "\n" +
+                                "Genere: " + genere + "\n" +
+                                "****************************************\n";
+                
+                        // Scriviamo tutto il contenuto corretto nel file
+                        try (FileWriter FW = new FileWriter(file.getAbsolutePath(),false)) {
+                            FW.write(LibriPrima.toString());
+                            FW.write(LibroAggiornato);
+                            FW.write(LibriDopo.toString());
+                        } catch (IOException e) {
+                            System.out.println("Errore durante la scrittura nel file.");
+                        }
+                    }
+                }
+                </pre>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideManager()">back</button>
+            </div>
+
+            <div id="LogInManager" style="display:none">
+                <pre>
+                    public class FileLogInManager {
+                        File logfile;
+                        String AddPassword="password";
+                        public FileLogInManager(String logfilename){
+                            logfile=new File(logfilename);
+                            try{
+                                logfile.createNewFile();
+                            }
+                            catch(IOException e)
+                            {
+                                System.out.println("Error creating file");
+                            }
+                        }
+                </pre>
+                <pre>
+                        public Boolean LogInRead(String Utente,String Password) {
+                            Utente="Utente: "+Utente+" ";
+                            Password="Password: "+Password;
+                            String UserPasswd= Utente+Password;
+                            System.out.println(UserPasswd);
+                            try(Scanner sc=new Scanner(new File(logfile.getAbsolutePath())))
+                            {
+                                while(sc.hasNextLine())
+                                {
+                                    String lineUtente=sc.nextLine();
+                                    if (lineUtente.equals(UserPasswd)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                            catch(FileNotFoundException e)
+                            {
+                                System.out.println("Error writing to file");
+                                e.printStackTrace();
+                            }
+                            return false;
+                        }
+                </pre>
+                <pre>
+                        public Boolean FileIsEmpty() {
+                            try(Scanner scanner= new Scanner(new File(logfile.getAbsolutePath())))
+                            {
+                                try {
+                                    String line = scanner.nextLine();
+                                }
+                                catch (NoSuchElementException e)
+                                {
+                                    System.out.println("Error writing to file");
+                                    //e.printStackTrace();
+                                    return true;
+                                }
+                                return false;
+                            }
+                            catch (FileNotFoundException e)
+                            {
+                                System.out.println("Error writing to file");
+                                //e.printStackTrace();
+                                return false;
+                            }
+                    
+                        }
+                </pre> 
+                <pre>   
+                        public Boolean NewUser (String Utente,String Password, String AddPwd, JFrame frame) {
+                            Utente="Utente: "+Utente+" ";
+                            Password="Password: "+Password+"\n";
+                            String UserPasswd= Utente+Password;
+                            Boolean aggiungi=true;
+                                if (!AddPwd.equals(AddPassword))
+                                {
+                                    JOptionPane.showMessageDialog(frame,"NON SEI AUTORIZZATO A CREARE NUOVI UTENTI!");
+                                    System.exit(2);
+                                }
+                            try(Scanner sc=new Scanner(new File(logfile.getAbsolutePath())))
+                            {
+                                while(sc.hasNextLine())
+                                {
+                                    String lineUtente=sc.nextLine()+"\n";
+                                    //System.out.println(lineUtente+";"+UserPasswd);
+                                    if (lineUtente.equals(UserPasswd)) {
+                                        aggiungi=false;
+                                        //JOptionPane.showMessageDialog(null, "Nome Utente o Password già in uso!");
+                                    }
+                                }
+                            }
+                            catch(FileNotFoundException e)
+                            {
+                                System.out.println("Error writing to file");
+                                e.printStackTrace();
+                            }
+                            if(aggiungi)
+                            {
+                                return AddUser(UserPasswd);
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                </pre>
+                <pre>
+                        public Boolean AddUser(String UserPasswd) {
+                            try(FileWriter writer = new FileWriter(logfile.getAbsolutePath(),true))
+                            {
+                                writer.append(UserPasswd);
+                                return true;
+                            }
+                            catch (IOException e)
+                            {
+                                System.out.println("Error writing to file");
+                                e.printStackTrace();
+                            }
+                            return true;
+                        }
+                    
+                    }
+                </pre>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideLogInManager()">back</button>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>Ma quali sono quindi le funzionalità della libreria?</h1>
+            <table>
+                <tr><td>Funzioni</td><td>Utilizzo</td></tr>
+                <tr><td>Creazione Account</td><td>Solo persone autorizzate possono creare altri utenti</td></tr>
+                <tr><td>Log in sicuro</td><td>Tre tentativi massimi, altrimenti il gestionale esegue uno shut down</td></tr>
+                <tr><td>Modifica</td><td>Se una volta inserito un libro ci si accorge di un errore si può modificare il libro</td></tr>
+                <tr><td>Filtri di ricerca</td><td>Filtri per ogni campo dei libri e anche per periodo</td></tr>
+              </table>
+        </div>
+
+        <div class="slide">
+            <h1>Conclusioni</h1>
+            <p>Il progetto utilizza un'architettura modulare e facilmente estendibile.</p>
+            <a href="IronShelf.zip" download="IronShelf.zip">
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px">Download</button>
+            </a>
+        </div>
+        <!-- Pulsanti di navigazione -->
+<button class="nav-button left" onclick="previousSlide()">◄</button>
+<button class="nav-button right" onclick="nextSlide()">►</button>
+    </div>
+    <div id="Immagini" style="display: none; text-align: center">
+
+        <div class="space"></div>
+        <div class="space"></div>
+        <div class="carousel">
+            <div class="carousel-container">
+                    <img src="Img1 (2).png" class="carousel-item" alt="Immagine 1">
+                    <img src="Img1 (3).png" class="carousel-item" alt="Immagine 2">
+                    <img src="Img1 (1).png" class="carousel-item" alt="Immagine 3">
+                    <img src="Img1 (4).png" class="carousel-item" alt="Immagine 4">
+                    <img src="Img1 (5).png" class="carousel-item" alt="Immagine 5">
+                    <img src="Img1 (6).png" class="carousel-item" alt="Immagine 6">
+                    <img src="Img1 (7).png" class="carousel-item" alt="Immagine 7">
+                    <img src="Img1 (8).png" class="carousel-item" alt="Immagine 8">
+                </div>
+            <button class="carousel-button" id="indietro">❮</button> <!-- Pulsante per andare indietro -->
+            <button class="carousel-button" id="avanti">❯</button> <!-- Pulsante per andare avanti -->
+        </div>
+        <div class="space"></div>
+        <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="showHome()">Torna alla Home</button>
+    </div>
+
+    <section id="Form" style="display: none; min-height: 100vh; background-color: #7ed0f9; padding: 40px;">
+        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
+          <h2 style="text-align: center; margin-bottom: 20px; color:#7ed0f9">Contattaci</h2>
+          <form>
+            <div style="margin-bottom: 20px;">
+              <label for="name" style="display: block; margin-bottom: 8px;">Nome</label>
+              <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" 
+                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+      
+            <div style="margin-bottom: 20px;">
+              <label for="email" style="display: block; margin-bottom: 8px;">Email</label>
+              <input type="email" id="email" name="email" placeholder="Inserisci la tua email" 
+                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+      
+            <div style="margin-bottom: 20px;">
+              <label for="subject" style="display: block; margin-bottom: 8px;">Oggetto</label>
+              <input type="text" id="subject" name="subject" placeholder="Oggetto del commento" 
+                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
+            </div>
+      
+            <div style="margin-bottom: 20px;">
+              <label for="message" style="display: block; margin-bottom: 8px;">Commento</label>
+              <textarea id="message" name="message" rows="6" placeholder="Scrivi qui il tuo commento"
+                        style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+            </div>
+      
+            <button type="submit" 
+                    style="width: 100%; padding: 15px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+              Invia
+            </button>
+          </form>
+        </div>
+    </section>
+    <script>
+        let CS = 0;
+const slides = document.querySelectorAll(".slide");
+//bottoni slide
+function nextSlide() {
+    slides[CS].classList.remove("active");
+    CS = (CS + 1) % slides.length;
+    slides[CS].classList.add("active");
+}
+
+function previousSlide() {
+    slides[CS].classList.remove("active");
+    CS = (CS - 1 + slides.length) % slides.length; // Evita valori negativi
+    slides[CS].classList.add("active");
+}
+
+    // Selezione degli elementi del carosello
+    const container = document.querySelector('.carousel-container');
+    const images = document.querySelectorAll('.carousel-item');
+    const prev = document.getElementById('indietro');
+    const next = document.getElementById('avanti');
+
+    let index = 0;
+
+    function updateCarousel() {
+const carouselWidth = document.querySelector('.carousel').clientWidth;
+container.style.transform = `translateX(${-index * carouselWidth}px)`;
+}
+
+window.addEventListener('resize', updateCarousel);
+
+next.addEventListener('click', () => {
+index = (index + 1) % images.length;
+updateCarousel();
+});
+
+prev.addEventListener('click', () => {
+index = (index - 1 + images.length) % images.length;
+updateCarousel();
+});
+
+// Chiama una volta per settare la dimensione iniziale
+updateCarousel();
+
+function showHome() {
+document.querySelector('.slider-container').style.display = 'block';
+document.getElementById('Immagini').style.display = 'none';
+document.getElementById('Form').style.display = 'none';
+document.getElementById('navbar').style.display = 'block'; // Mostra la navbar
+}
+
+function showImages() {
+document.querySelector('.slider-container').style.display = 'none';
+document.getElementById('Immagini').style.display = 'block';
+document.getElementById('Form').style.display = 'none';
+document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
+}
+
+function ShowForm() {
+document.querySelector('.slider-container').style.display = 'none';
+document.getElementById('Immagini').style.display = 'none';
+document.getElementById('Form').style.display = 'flex';
+document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
+}
+function showStart(){
+document.querySelector('Start').style.display = 'block';
+}
+function HideStart(){
+document.querySelector('Start').style.display = 'none';
+}
+
+function showStart() {
+    document.getElementById('Start').style.display = 'block';
+    document.getElementById('SignUp').style.display = 'none';
+    document.getElementById('LogIn').style.display = 'none';
+}
+
+function HideStart() {
+    document.getElementById('Start').style.display = 'none';
+}
+
+function showLogIn() {
+    document.getElementById('LogIn').style.display = 'block';
+    document.getElementById('SignUp').style.display = 'none';
+}
+
+function HideLogIn() {
+    document.getElementById('LogIn').style.display = 'none';
+}
+
+function shoWSignUp() {
+    document.getElementById('SignUp').style.display = 'block';
+    document.getElementById('LogIn').style.display = 'none';
+}
+
+function HideSignUp() {
+    document.getElementById('SignUp').style.display = 'none';
+}
+
+function ShowFileManager() {
+    document.getElementById('Manager').style.display = 'block';
+    document.getElementById('LogInManager').style.display = 'none';
+}
+
+function HideManager() {
+    document.getElementById('Manager').style.display = 'none';
+}
+
+function ShowLogInManager() {
+    document.getElementById('LogInManager').style.display = 'block';
+    document.getElementById('Manager').style.display = 'none';
+}
+
+function HideLogInManager() {
+    document.getElementById('LogInManager').style.display = 'none';
+}
+    </script>
+</body>
+</html>
