@@ -45,8 +45,7 @@
 
         <div class="slide">
             <div style="display: flex; align-items: center; justify-content: space-between;">
-                <h1>Il progetto è suddiviso nelle classi seguenti</h1>
-                
+                <h1>Il progetto è suddiviso nelle classi seguenti: </h1>
                 <img style="max-width: 30%; height: auto; border-radius: 20px;" src="StrutturaProgetto.png">
             </div> 
         </div>
@@ -74,154 +73,161 @@
             <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="showStart()">Start</button>
             <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="shoWSignUp()">SignUp</button>
             <div id="Start" style="display: none;">
-                <pre>
-                    public Start(FileLogInManager log) {
-                        JFrame StartFrame = new JFrame();
-                        StartFrame.setSize(300, 300);
-                        StartFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        //StartFrame.setBackground(Color.black);
-                        StartFrame.setLocationRelativeTo(null);
-                
-                        Gradiente StartPanel = new Gradiente(new Color(83, 244, 246), new Color(250, 201, 26));
-                        StartPanel.setLayout(new BoxLayout(StartPanel, BoxLayout.Y_AXIS));
-                        JLabel WelcomeLabel=new JLabel("Benvenuto cosa vuole fare?");
-                        WelcomeLabel.setForeground(Color.white);
-                        WelcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        JLabel ACapoLabel=new JLabel("\n");
-                        JLabel ACapoLabel2=new JLabel("\n");
-                        JLabel ACapoLabel3=new JLabel("\n");
-                
-                        JPanel ButtonPanel = new JPanel();
-                        ButtonPanel.setLayout(new BoxLayout(ButtonPanel, BoxLayout.X_AXIS));
-                        JButton LogInButton = new JButton("Log In");
-                        LogInButton.setMaximumSize(new Dimension(100, 30));
-                        LogInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        LogInButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-                        LogInButton.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                new LogIn(log);
-                                StartFrame.dispose();
-                            }
-                        });
-                
-                        JButton SingUpButton = new JButton("Sign Up");
-                        SingUpButton.setMaximumSize(new Dimension(100,30));
-                        SingUpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        SingUpButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-                        SingUpButton.addActionListener(new ActionListener() {
-                            public void actionPerformed(ActionEvent e) {
-                                new SingUp(log);
-                                StartFrame.dispose();
-                            }
-                        });
-                
-                        //Immagine I= new Immagine("./Progetto Libreria/Database/IronShelf.png");
-                        Immagine I= new Immagine("../Database/IronShelf.png");
-                        I.setMaximumSize(new Dimension(130, 130));
-                    }
-                </pre>
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <pre>
+                        public Start(FileLogInManager log) {
+                            JFrame StartFrame = new JFrame();
+                            StartFrame.setSize(300, 300);
+                            StartFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            //StartFrame.setBackground(Color.black);
+                            StartFrame.setLocationRelativeTo(null);
+                    
+                            Gradiente StartPanel = new Gradiente(new Color(83, 244, 246), new Color(250, 201, 26));
+                            StartPanel.setLayout(new BoxLayout(StartPanel, BoxLayout.Y_AXIS));
+                            JLabel WelcomeLabel=new JLabel("Benvenuto cosa vuole fare?");
+                            WelcomeLabel.setForeground(Color.white);
+                            WelcomeLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            JLabel ACapoLabel=new JLabel("\n");
+                            JLabel ACapoLabel2=new JLabel("\n");
+                            JLabel ACapoLabel3=new JLabel("\n");
+                    
+                            JPanel ButtonPanel = new JPanel();
+                            ButtonPanel.setLayout(new BoxLayout(ButtonPanel, BoxLayout.X_AXIS));
+                            JButton LogInButton = new JButton("Log In");
+                            LogInButton.setMaximumSize(new Dimension(100, 30));
+                            LogInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            LogInButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+                            LogInButton.addActionListener(new ActionListener() {
+                                public void actionPerformed(ActionEvent e) {
+                                    new LogIn(log);
+                                    StartFrame.dispose();
+                                }
+                            });
+                    
+                            JButton SingUpButton = new JButton("Sign Up");
+                            SingUpButton.setMaximumSize(new Dimension(100,30));
+                            SingUpButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            SingUpButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+                            SingUpButton.addActionListener(new ActionListener() {
+                                public void actionPerformed(ActionEvent e) {
+                                    new SingUp(log);
+                                    StartFrame.dispose();
+                                }
+                            });
+                    
+                            //Immagine I= new Immagine("./Progetto Libreria/Database/IronShelf.png");
+                            Immagine I= new Immagine("../Database/IronShelf.png");
+                            I.setMaximumSize(new Dimension(130, 130));
+                        }
+                    </pre>
+                    <img style="max-width: 25%; height: auto; border-radius: 20px;" src="Img1 (2).png">
+                </div>
                 <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideStart()">Back</button>
                 <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="showLogIn()">Log In</button>
                 <div id="LogIn" style="display: none;">
-                    <pre>
-                    public LogIn(FileLogInManager FileLog) {
-                        //impostazione del frame
-                        JFrame logInFrame = new JFrame("LogIn");
-                        logInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        logInFrame.setSize(300,200);
-                        logInFrame.setLocationRelativeTo(null);
-                
-                        //impostazione del panel
-                        Gradiente logInPanel = new Gradiente(new Color(250, 27, 198), new Color(83, 244, 246));
-                        logInPanel.setLayout(new BoxLayout(logInPanel,BoxLayout.Y_AXIS));
-                
-                        JPanel occhioPanel = new JPanel();
-                        occhioPanel.setLayout(new BoxLayout(occhioPanel,BoxLayout.X_AXIS));
-                
-                        JLabel UserNAmeInLabel = new JLabel("Nome Utente");
-                        //UserNAmeInLabel.setForeground();
-                        JTextField UserNameField = new JTextField("Inserisci utente...");
-                        UserNameField.setMaximumSize(new Dimension(200, 20));
-                        UserNameField.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        UserNAmeInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        UserNameField.setForeground(Color.GRAY);
-                        UserNameField.addFocusListener(new FocusListener() {
-                            public void focusGained(FocusEvent e) {
-                                if(UserNameField.getText().equals("Inserisci utente..."))
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <pre>
+                        public LogIn(FileLogInManager FileLog) {
+                            //impostazione del frame
+                            JFrame logInFrame = new JFrame("LogIn");
+                            logInFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            logInFrame.setSize(300,200);
+                            logInFrame.setLocationRelativeTo(null);
+                    
+                            //impostazione del panel
+                            Gradiente logInPanel = new Gradiente(new Color(250, 27, 198), new Color(83, 244, 246));
+                            logInPanel.setLayout(new BoxLayout(logInPanel,BoxLayout.Y_AXIS));
+                    
+                            JPanel occhioPanel = new JPanel();
+                            occhioPanel.setLayout(new BoxLayout(occhioPanel,BoxLayout.X_AXIS));
+                    
+                            JLabel UserNAmeInLabel = new JLabel("Nome Utente");
+                            //UserNAmeInLabel.setForeground();
+                            JTextField UserNameField = new JTextField("Inserisci utente...");
+                            UserNameField.setMaximumSize(new Dimension(200, 20));
+                            UserNameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            UserNAmeInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            UserNameField.setForeground(Color.GRAY);
+                            UserNameField.addFocusListener(new FocusListener() {
+                                public void focusGained(FocusEvent e) {
+                                    if(UserNameField.getText().equals("Inserisci utente..."))
+                                    {
+                                        UserNameField.setText("");
+                                        UserNameField.setForeground(Color.black);
+                                    }
+                                }
+                                public void focusLost(FocusEvent e) {
+                                    if (UserNameField.getText().isEmpty()) {
+                                        UserNameField.setText("Inserisci utente...");
+                                        UserNameField.setForeground(Color.GRAY);
+                                    }
+                                }
+                            });
+                    
+                            JLabel PasswordInLabel = new JLabel("Password");
+                            JPasswordField PasswordField = new JPasswordField();
+                            PasswordField.setMaximumSize(new Dimension(200, 20));
+                            PasswordField.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            PasswordInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                            PasswordField.setForeground(Color.black);
+                    
+                            JButton logInButton = new JButton("Submit");
+                            logInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+                    
+                            logInButton.addActionListener(new ActionListener() {
+                                int cont=0;
+                                public void actionPerformed(ActionEvent e) {
+                                    String userName = UserNameField.getText();
+                                    String password = PasswordField.getText();
+                                    if(FileLog.LogInRead(userName, password) && cont<3)
+                                    {
+                                        JOptionPane.showMessageDialog(logInFrame, "Benvunuto/a "+userName+"!");
+                                        logInFrame.dispose();
+                                        //String FileName = "./Progetto Libreria/Database/DatabaseLibreria.txt";
+                                        String FileName = "DatabaseLibreria.txt";
+                                        FileManager file = new FileManager(FileName);
+                                    new MainFrame(file);
+                                    }
+                                    else if(cont>=2)
+                                    {
+                                        JOptionPane.showMessageDialog(logInFrame, "Tentativi esauriti, mi dispiace");
+                                        System.exit(1);
+                                    }
+                                    else if(PasswordField.getText().equals("Inserisci password...") || UserNameField.getText().equals("Inserisci utente..."))
+                                    {
+                                        JOptionPane.showMessageDialog(logInFrame, "Tutti i campi sono obbligatori!");
+                                    }
+                                    else
+                                    {
+                                        cont++;
+                                        JOptionPane.showMessageDialog(logInFrame, "Nome utente o password errati");
+                                        UserNameField.setText("");
+                                        PasswordField.setText("");
+                                    }
+                                }
+                            });
+                            JToggleButton toggleButton = new JToggleButton("👁️"); // Aggiungi un listener per il toggle button
+                            toggleButton.addItemListener(new ItemListener() {
+                                @Override public void itemStateChanged(ItemEvent e)
+                                { if (e.getStateChange() == ItemEvent.SELECTED)
+                                { // Mostra la password in chiaro
+                                    PasswordField.setEchoChar((char) 0); // Caratteri visibili
+                                }
+                                else // Nasconde la password con un asterisco
                                 {
-                                    UserNameField.setText("");
-                                    UserNameField.setForeground(Color.black);
-                                }
-                            }
-                            public void focusLost(FocusEvent e) {
-                                if (UserNameField.getText().isEmpty()) {
-                                    UserNameField.setText("Inserisci utente...");
-                                    UserNameField.setForeground(Color.GRAY);
-                                }
-                            }
-                        });
-                
-                        JLabel PasswordInLabel = new JLabel("Password");
-                        JPasswordField PasswordField = new JPasswordField();
-                        PasswordField.setMaximumSize(new Dimension(200, 20));
-                        PasswordField.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        PasswordInLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-                        PasswordField.setForeground(Color.black);
-                
-                        JButton logInButton = new JButton("Submit");
-                        logInButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-                
-                        logInButton.addActionListener(new ActionListener() {
-                            int cont=0;
-                            public void actionPerformed(ActionEvent e) {
-                                String userName = UserNameField.getText();
-                                String password = PasswordField.getText();
-                                if(FileLog.LogInRead(userName, password) && cont<3)
-                                {
-                                    JOptionPane.showMessageDialog(logInFrame, "Benvunuto/a "+userName+"!");
-                                    logInFrame.dispose();
-                                    //String FileName = "./Progetto Libreria/Database/DatabaseLibreria.txt";
-                                    String FileName = "DatabaseLibreria.txt";
-                                    FileManager file = new FileManager(FileName);
-                                   new MainFrame(file);
-                                }
-                                else if(cont>=2)
-                                {
-                                    JOptionPane.showMessageDialog(logInFrame, "Tentativi esauriti, mi dispiace");
-                                    System.exit(1);
-                                }
-                                else if(PasswordField.getText().equals("Inserisci password...") || UserNameField.getText().equals("Inserisci utente..."))
-                                {
-                                    JOptionPane.showMessageDialog(logInFrame, "Tutti i campi sono obbligatori!");
-                                }
-                                else
-                                {
-                                    cont++;
-                                    JOptionPane.showMessageDialog(logInFrame, "Nome utente o password errati");
-                                    UserNameField.setText("");
-                                    PasswordField.setText("");
-                                }
-                            }
-                        });
-                        JToggleButton toggleButton = new JToggleButton("👁️"); // Aggiungi un listener per il toggle button
-                        toggleButton.addItemListener(new ItemListener() {
-                            @Override public void itemStateChanged(ItemEvent e)
-                            { if (e.getStateChange() == ItemEvent.SELECTED)
-                            { // Mostra la password in chiaro
-                                PasswordField.setEchoChar((char) 0); // Caratteri visibili
-                            }
-                            else // Nasconde la password con un asterisco
-                            {
-                                PasswordField.setEchoChar('•'); // Caratteri mascherati
-                            } } });
-                        occhioPanel.add(PasswordField);
-                        occhioPanel.add(toggleButton);
-                    }
-                </pre>
+                                    PasswordField.setEchoChar('•'); // Caratteri mascherati
+                                } } });
+                            occhioPanel.add(PasswordField);
+                            occhioPanel.add(toggleButton);
+                        }
+                    </pre>
+                    <img style="max-width: 30%; height: auto; border-radius: 20px;" src="Img1 (1).png">
+                </div>
                 <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideLogIn()">Back</button>
                 </div>
             </div>
             <div id="SignUp" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
                 <pre>
                     public SingUp(FileLogInManager FileLog) {
                         JFrame singUpFrame=new JFrame("SignUp");
@@ -326,6 +332,8 @@
                         });
                     }
                 </pre>
+                <img style="max-width: 30%; height: auto; border-radius: 20px;" src="Img1 (3).png">
+                </div>
                 <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="HideSignUp()">Back</button>
             </div>
         </div>
@@ -707,7 +715,19 @@
 
         <div class="slide">
             <h1>Conclusioni</h1>
-            <p>Il progetto utilizza un'architettura modulare e facilmente estendibile.</p>
+            <p>Iron Shelf è un progetto opensource che utilizza un'architettura modulare e facilmente estendibile e personalizzabile.</p>
+            <div style="display:flex;align-items:center;">
+                <p>Mail per contattarmi:</p>
+                <a href="piccinini.valerio@einaudicorreggio.it">
+                    <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227); font-size: 20px;">piccinini.valerio@einaudicorreggio.it</button>
+                </a>
+            </div>
+            <div style="display:flex;align-items:center;">
+                <p>Seguiteci su Instagram: </p>
+                <a href="https://instagram.com/ironshelf.official" target="_blank">
+                    <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227); font-size: 20px;"> IronShelf.Official </button> 
+                </a>
+            </div>
             <a href="IronShelf.zip" download="IronShelf.zip">
                 <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px">Download</button>
             </a>
@@ -738,157 +758,139 @@
         <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" onclick="showHome()">Torna alla Home</button>
     </div>
 
-    <section id="Form" style="display: none; min-height: 100vh; background-color: #7ed0f9; padding: 40px;">
-        <div style="max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.2);">
-          <h2 style="text-align: center; margin-bottom: 20px; color:#7ed0f9">Contattaci</h2>
-          <form>
-            <div style="margin-bottom: 20px;">
-              <label for="name" style="display: block; margin-bottom: 8px;">Nome</label>
-              <input type="text" id="name" name="name" placeholder="Inserisci il tuo nome" 
-                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-      
-            <div style="margin-bottom: 20px;">
-              <label for="email" style="display: block; margin-bottom: 8px;">Email</label>
-              <input type="email" id="email" name="email" placeholder="Inserisci la tua email" 
-                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-      
-            <div style="margin-bottom: 20px;">
-              <label for="subject" style="display: block; margin-bottom: 8px;">Oggetto</label>
-              <input type="text" id="subject" name="subject" placeholder="Oggetto del commento" 
-                     style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;">
-            </div>
-      
-            <div style="margin-bottom: 20px;">
-              <label for="message" style="display: block; margin-bottom: 8px;">Commento</label>
-              <textarea id="message" name="message" rows="6" placeholder="Scrivi qui il tuo commento"
-                        style="width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
-            </div>
-      
-            <button type="submit" 
-                    style="width: 100%; padding: 15px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
-              Invia
-            </button>
-          </form>
+    <section id="Form" style="display:none">
+        <div class="form-container">
+            <h2>Contattaci</h2>
+            <form>
+                <fieldset>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Inserisci la tua email">
+                </fieldset>
+    
+                <fieldset>
+                    <label for="subject">Oggetto</label>
+                    <input type="text" id="subject" name="subject" placeholder="Oggetto del commento">
+                </fieldset>
+    
+                <fieldset>
+                    <label for="message">Commento</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Scrivi qui il tuo commento"></textarea>
+                </fieldset>
+                <button style="text-align: center; border-radius: 20px; color: rgb(15, 97, 227);font-size: 20px" type="submit" onclick="showHome()">Invia</button>
+            </form>
         </div>
     </section>
+    
     <script>
         let CS = 0;
-const slides = document.querySelectorAll(".slide");
-//bottoni slide
-function nextSlide() {
-    slides[CS].classList.remove("active");
-    CS = (CS + 1) % slides.length;
-    slides[CS].classList.add("active");
-}
+        const slides = document.querySelectorAll(".slide");
+        //bottoni slide
+        function nextSlide() {
+            slides[CS].classList.remove("active");
+            CS = (CS + 1) % slides.length;
+            slides[CS].classList.add("active");
+        }
 
-function previousSlide() {
-    slides[CS].classList.remove("active");
-    CS = (CS - 1 + slides.length) % slides.length; // Evita valori negativi
-    slides[CS].classList.add("active");
-}
+        function previousSlide() {
+            slides[CS].classList.remove("active");
+            CS = (CS - 1 + slides.length) % slides.length; // Evita valori negativi
+            slides[CS].classList.add("active");
+        }
 
-    // Selezione degli elementi del carosello
-    const container = document.querySelector('.carousel-container');
-    const images = document.querySelectorAll('.carousel-item');
-    const prev = document.getElementById('indietro');
-    const next = document.getElementById('avanti');
+        // Selezione degli elementi del carosello
+        const container = document.querySelector('.carousel-container');
+        const images = document.querySelectorAll('.carousel-item');
+        const prev = document.getElementById('indietro');
+        const next = document.getElementById('avanti');
 
-    let index = 0;
+        let index = 0;
 
-    function updateCarousel() {
-const carouselWidth = document.querySelector('.carousel').clientWidth;
-container.style.transform = `translateX(${-index * carouselWidth}px)`;
-}
+        function updateCarousel() {
+        const carouselWidth = document.querySelector('.carousel').clientWidth;
+        container.style.transform = `translateX(${-index * carouselWidth}px)`;
+        }
 
-window.addEventListener('resize', updateCarousel);
+        window.addEventListener('resize', updateCarousel);
 
-next.addEventListener('click', () => {
-index = (index + 1) % images.length;
-updateCarousel();
-});
+        next.addEventListener('click', () => {
+        index = (index + 1) % images.length;
+        updateCarousel();
+        });
 
-prev.addEventListener('click', () => {
-index = (index - 1 + images.length) % images.length;
-updateCarousel();
-});
+        prev.addEventListener('click', () => {
+        index = (index - 1 + images.length) % images.length;
+        updateCarousel();
+        });
 
-// Chiama una volta per settare la dimensione iniziale
-updateCarousel();
+        // Chiama una volta per settare la dimensione iniziale
+        updateCarousel();
 
-function showHome() {
-document.querySelector('.slider-container').style.display = 'block';
-document.getElementById('Immagini').style.display = 'none';
-document.getElementById('Form').style.display = 'none';
-document.getElementById('navbar').style.display = 'block'; // Mostra la navbar
-}
+        function showHome() {
+        document.querySelector('.slider-container').style.display = 'block';
+        document.getElementById('Immagini').style.display = 'none';
+        document.getElementById('Form').style.display = 'none';
+        document.getElementById('navbar').style.display = 'block'; // Mostra la navbar
+        }
 
-function showImages() {
-document.querySelector('.slider-container').style.display = 'none';
-document.getElementById('Immagini').style.display = 'block';
-document.getElementById('Form').style.display = 'none';
-document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
-}
+        function showImages() {
+        document.querySelector('.slider-container').style.display = 'none';
+        document.getElementById('Immagini').style.display = 'block';
+        document.getElementById('Form').style.display = 'none';
+        document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
+        }
 
-function ShowForm() {
-document.querySelector('.slider-container').style.display = 'none';
-document.getElementById('Immagini').style.display = 'none';
-document.getElementById('Form').style.display = 'flex';
-document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
-}
-function showStart(){
-document.querySelector('Start').style.display = 'block';
-}
-function HideStart(){
-document.querySelector('Start').style.display = 'none';
-}
+        function ShowForm() {
+        document.querySelector('.slider-container').style.display = 'none';
+        document.getElementById('Immagini').style.display = 'none';
+        document.getElementById('Form').style.display = 'flex';
+        document.getElementById('navbar').style.display = 'none'; // Nasconde la navbar
+        }
 
-function showStart() {
-    document.getElementById('Start').style.display = 'block';
-    document.getElementById('SignUp').style.display = 'none';
-    document.getElementById('LogIn').style.display = 'none';
-}
+        function showStart() {
+            document.getElementById('Start').style.display = 'block';
+            document.getElementById('SignUp').style.display = 'none';
+            document.getElementById('LogIn').style.display = 'none';
+        }
 
-function HideStart() {
-    document.getElementById('Start').style.display = 'none';
-}
+        function HideStart() {
+            document.getElementById('Start').style.display = 'none';
+        }
 
-function showLogIn() {
-    document.getElementById('LogIn').style.display = 'block';
-    document.getElementById('SignUp').style.display = 'none';
-}
+        function showLogIn() {
+            document.getElementById('LogIn').style.display = 'block';
+            document.getElementById('SignUp').style.display = 'none';
+        }
 
-function HideLogIn() {
-    document.getElementById('LogIn').style.display = 'none';
-}
+        function HideLogIn() {
+            document.getElementById('LogIn').style.display = 'none';
+        }
 
-function shoWSignUp() {
-    document.getElementById('SignUp').style.display = 'block';
-    document.getElementById('LogIn').style.display = 'none';
-}
+        function shoWSignUp() {
+            document.getElementById('SignUp').style.display = 'block';
+            document.getElementById('LogIn').style.display = 'none';
+        }
 
-function HideSignUp() {
-    document.getElementById('SignUp').style.display = 'none';
-}
+        function HideSignUp() {
+            document.getElementById('SignUp').style.display = 'none';
+        }
 
-function ShowFileManager() {
-    document.getElementById('Manager').style.display = 'block';
-    document.getElementById('LogInManager').style.display = 'none';
-}
+        function ShowFileManager() {
+            document.getElementById('Manager').style.display = 'block';
+            document.getElementById('LogInManager').style.display = 'none';
+        }
 
-function HideManager() {
-    document.getElementById('Manager').style.display = 'none';
-}
+        function HideManager() {
+            document.getElementById('Manager').style.display = 'none';
+        }
 
-function ShowLogInManager() {
-    document.getElementById('LogInManager').style.display = 'block';
-    document.getElementById('Manager').style.display = 'none';
-}
+        function ShowLogInManager() {
+            document.getElementById('LogInManager').style.display = 'block';
+            document.getElementById('Manager').style.display = 'none';
+        }
 
-function HideLogInManager() {
-    document.getElementById('LogInManager').style.display = 'none';
-}
+        function HideLogInManager() {
+            document.getElementById('LogInManager').style.display = 'none';
+        }
     </script>
 </body>
 </html>

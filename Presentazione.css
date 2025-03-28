@@ -140,52 +140,54 @@ pre {
 
 /* Form */
 #Form {
-    background-color: #28372a;
-    display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #7ed0f9;
     padding: 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 6px solid #140644;
-    padding: 20px;
+.form-container {
+    background-color:#272222;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     max-width: 500px;
-    width: 90%;
-    height: auto;
-    background-color: #282a28;
-    margin: 120px auto 0 auto;
+    width: 100%;
 }
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
+    color: #7ed0f9;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 fieldset {
-    width: 90%;
     border: none;
     margin-bottom: 15px;
 }
 
-input[type="text"], input[type="date"], input[type="email"], input[type="commento"] {
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, textarea {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-input[type="submit"] {
-    padding: 10px 20px;
-    background-color: #140644;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
 
-input[type="submit"]:hover {
-    background-color: #574b4b;
+button:hover {
+    background-color: #2874a6;
 }
 
 .space { height: 100px; }
@@ -226,69 +228,6 @@ tr:not(:first-child):hover {
 iframe {
     max-width: 100%;
     height: auto;
-}
-
-/* --- MEDIA QUERY MOBILE --- */
-@media (max-width: 600px) {
-    .slide {
-        padding: 10%;
-        font-size: 14px;
-    }
-
-    pre {
-        font-size: 12px;
-    }
-
-    .nav-button, .carousel-button {
-        padding: 8px;
-        font-size: 14px;
-    }
-
-    form {
-        width: 90%;
-        height: auto;
-        margin: 120px auto 0 auto;
-    }
-
-    table, thead, tbody, th, td, tr {
-        display: block;
-    }
-
-    tr:first-child { display: none; }
-
-    td {
-        position: relative;
-        padding-left: 50%;
-        font-size: 14px;
-    }
-
-    td::before {
-        position: absolute;
-        top: 18px;
-        left: 18px;
-        width: 45%;
-        white-space: nowrap;
-    }
-
-    td:nth-of-type(1)::before { content: "Funzioni"; }
-    td:nth-of-type(2)::before { content: "Utilizzo"; }
-}
-
-/* --- MEDIA QUERY TABLET --- */
-@media (max-width: 992px) and (min-width: 601px) {
-    form {
-        width: 80%;
-        margin: 120px auto 0 auto;
-    }
-
-    .carousel {
-        max-width: 90%;
-        height: auto;
-    }
-
-    table {
-        width: 95%;
-    }
 }
 
 /* Posizionamento specifico dei pulsanti */
